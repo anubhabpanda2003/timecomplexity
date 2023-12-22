@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Java Code Time Complexity Analyzer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        text-align: center;
+      }
+
+      #container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      textarea {
+        width: 100%;
+        height: 150px;
+        margin-top: 10px;
+      }
+
+      button {
+        margin-top: 10px;
+        padding: 8px 16px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      #result {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h2>Java Code Time Complexity Analyzer</h2>
+      <textarea id="javaCode" placeholder="Enter Java code here..."></textarea>
+      <button onclick="analyzeTimeComplexity()">Analyze Time Complexity</button>
+      <div id="result"></div>
+    </div>
+
+    <script>
+      function analyzeTimeComplexity() {
+        var javaCode = document.getElementById("javaCode").value;
+        var apiUrl = "https://api.openai.com/v1/models"; // Actual OpenAI API endpoint
+
+        // Replace 'YOUR_OPENAI_API_KEY' with your actual OpenAI API key
+        var apiKey = sk - ZT9QTApIjZfW7xXF0NZiT3BlbkFJx6dvfprGxs6ksYk3csbN;
+
+        // Send the Java code to OpenAI GPT-3 for analysis
+        fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+          },
+          body: JSON.stringify({
+            prompt: `Analyze the time complexity of the following Java code:\n\n${javaCode}\n\nTime complexity: `,
+            max_tokens: 50,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            var resultElement = document.getElementById("result");
+            resultElement.innerHTML = `<strong>Time Complexity (Big-O):</strong> ${data.choices[0].text}`;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
+  </body>
+</html>
