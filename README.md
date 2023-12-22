@@ -1,0 +1,2 @@
+# timecomplexity
+finding timecomplexity
